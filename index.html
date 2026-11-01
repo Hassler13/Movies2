@@ -14,7 +14,7 @@
         <a href="#">Home</a>
         <a href="#">Movies</a>
         <a href="#">Genres</a>
-        <a href="#">About</a>
+        <a href="#footer">About</a>
     </nav>
 </header>
 <section class="hero">
@@ -22,15 +22,19 @@
         <h1>Find Your Next Movie</h1>
         <p> Search for movies, discover new favorites, and explore what's worth watching. </p>
         <form class="search-form">
-            <input type="text" placeholder="Search for a movie..."">
-            <button type="submit"> Search </button>
+            <input type="text" placeholder="Search for a movie...">
+            <button type="submit" onclick="onSearch(event)" autocomplete="off"> Search </button>
         </form>
     </div> 
 </section>
 <main class="container"> 
     <div class="section-heading">
         <h2>Popular Movies</h2>
-        <button class="filter-button"> Filter </button>
+        <select class="filter-button" onchange="filterMovies(event)">
+            <option value="" disabled selected>Filter</option>
+            <option value="A_Z">A - Z</option>
+            <option value="Z_A">Z - A</option>
+        </select>
     </div>
 
     <section class="movie-grid">
@@ -50,5 +54,8 @@
         </div>
     </section>
     </main>
+    <footer class="footer">
+        <p>&copy; 2023 MovieFinder. All rights reserved.</p>
+    </footer>
 </body>
 </html>
