@@ -3,18 +3,30 @@
 // KEY: 485a4ccb
 
 
+
 async function main(filter) {
-
-    if(filter === 'A_Z') {
-        console.log(filter);
-        const filteredMovies = movies.sort((a, b) => a.Title.localCompare(b.Title))
-        console.log(filteredMovies);
-    }
-
-    const movies = await fetch(`http://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
+    const movies = await fetch(`https://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
     const movieData = await movies.json();
+
+    
+    let filteredMovies = movieData.Search;
+
+if (filter === 'A_Z') {
+    filteredMovies.sort((a, b) =>
+        a.Title.localeCompare(b.Title)
+    );
+}
+
+if (filter === 'Z_A') {
+    filteredMovies.sort((a, b) =>
+        b.Title.localeCompare(a.Title)
+    );
+}
+
     const movieCardEl = document.querySelector('.movie-grid');
-    movieCardEl.innerHTML = movieData.Search.map( (movie) => movieHTML(movie)).join("");
+    movieCardEl.innerHTML = filteredMovies.map(
+    (movie) => movieHTML(movie)
+    ).join("");
     
 }
 
@@ -26,8 +38,10 @@ setTimeout(() => {
     main();
 })
 
+
+
 function movieHTML(movie) {
-    return `<div class="movie-card">
+    return`<div class="movie-card">
             <div class="movie-poster">
                 <img src="${movie.Poster}" alt="Movie poster placeholder" >
             </div>
@@ -40,5 +54,8 @@ function movieHTML(movie) {
                 <button class="details-button" onclick="alert('Not Available')"> View Details </button>
             </div>
         </div>`
-}
+    }
+
+
+
 
