@@ -3,11 +3,20 @@
 // KEY: 485a4ccb
 
 
-
 async function main(filter) {
-    const movies = await fetch(`https://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
+
+     await new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([]);
+        }, 1000);
+}) 
+
+    console.log(main)
+
+    const movies = await fetch(`http://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
     const movieData = await movies.json();
 
+    
     
     let filteredMovies = movieData.Search;
 
@@ -41,7 +50,8 @@ setTimeout(() => {
 
 
 function movieHTML(movie) {
-    return`<div class="movie-card">
+
+return `<div class="movie-card">
             <div class="movie-poster">
                 <img src="${movie.Poster}" alt="Movie poster placeholder" >
             </div>
@@ -54,8 +64,7 @@ function movieHTML(movie) {
                 <button class="details-button" onclick="alert('Not Available')"> View Details </button>
             </div>
         </div>`
-    }
-
-
-
+}
+   
+// }
 
