@@ -1,5 +1,5 @@
 async function main() {
-    const movies = await fetch(`http://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
+    const movies = await fetch(`https://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
     const movieData = await movies.json();
     const movieCardEl = document.querySelector('.movie-grid');
     movieCardEl.innerHTML = movieData.Search.map( (movie) => movieHTML(movie)).join("");

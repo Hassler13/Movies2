@@ -11,9 +11,9 @@ async function main(filter) {
         }, 1000);
 }) 
 
-    console.log(main)
+    // console.log(main)
 
-    const movies = await fetch(`http://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
+    const movies = await fetch(`https://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
     const movieData = await movies.json();
 
     
