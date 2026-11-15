@@ -3,6 +3,9 @@
 // KEY: 485a4ccb
 
 
+
+
+
 async function main(filter) {
 
      await new Promise((resolve) => {
@@ -11,12 +14,11 @@ async function main(filter) {
         }, 1000);
 }) 
 
-    // console.log(main)
+
 
     const movies = await fetch(`https://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
     const movieData = await movies.json();
 
-    
     
     let filteredMovies = movieData.Search;
 
@@ -37,7 +39,10 @@ if (filter === 'Z_A') {
     (movie) => movieHTML(movie)
     ).join("");
     
+    
 }
+
+
 
 function filterMovies(event) {
         main(event.target.value)
