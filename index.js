@@ -3,24 +3,22 @@
 // KEY: 485a4ccb
 
 
-
+let allMovies = [];
 
 
 async function main(filter) {
 
-     await new Promise((resolve) => {
-        setTimeout(() => {
-            resolve([]);
-        }, 1000);
-}) 
+    if (allMovies.length === 0) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
+        const movies = await fetch ('https://www.omdbapi.com/?apikey=485a4ccb&s=movie');
+        
+        const movieData = await movies.json();
+        allMovies = movieData.Search || [];
+    }
 
-
-    const movies = await fetch(`https://www.omdbapi.com/?apikey=485a4ccb&s=movie`);
-    const movieData = await movies.json();
-
-    
-    let filteredMovies = movieData.Search;
+    let filteredMovies = [...allMovies]
+   
 
 if (filter === 'A_Z') {
     filteredMovies.sort((a, b) =>
@@ -71,5 +69,4 @@ return `<div class="movie-card">
         </div>`
 }
    
-// }
 
