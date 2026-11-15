@@ -69,11 +69,23 @@ return `<div class="movie-card">
         </div>`
 }
    
-document.body.innerHTML += `
-<input id="search" placeholder="Search movies..."/>`;
 
 
-document.getElementById("search").addEventListener("input", (e) => {
-    const results = allMovies.filter(movie => movie.Title.toLowerCase().includes(e.target.value.toLowerCase()));
-    // console.log(results);
-})
+document.querySelector(".search-form input")
+.addEventListener("input", async (e) => {
+    const search = e.target.value.trim();
+
+    if(!search) return;
+
+    const response = await fetch(
+        `https://www.omdbapi.com/?apikey=485a4ccb&s=${encodeURIComponent(search)}`
+    );
+
+    const data = await response.json();
+
+        document.querySelector(".movie-grid").innerHTML = 
+        (data.Search || []).map(movie => movieHTML(movie)).join("");
+});
+
+// document.querySelector(".search-form")
+// .addEventListener("submit" , e => e.preventDefault());
