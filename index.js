@@ -69,4 +69,11 @@ return `<div class="movie-card">
         </div>`
 }
    
+document.body.innerHTML += `
+<input id="search" placeholder="Search movies..."/>`;
 
+
+document.getElementById("search").addEventListener("input", (e) => {
+    const results = allMovies.filter(movie => movie.Title.toLowerCase().includes(e.target.value.toLowerCase()));
+    // console.log(results);
+})
